@@ -30,3 +30,15 @@ This model demonstrates the "Capital Intensity Penalty" introduced by the 2022 �
 
 ### The "D&A Trap"
 Under the current regime, firms with high Depreciation & Amortization (D&A) hit their debt capacity 30-40% sooner than they did in 2021, even with identical cash flows. This framework allows you to quantify that "Debt Gap."
+
+## 📚 Key Terminology
+
+To fully understand the TCJA's impact, familiarize yourself with these core concepts:
+
+- **TCJA (Tax Cuts and Jobs Act of 2017):** Major U.S. tax reform that significantly altered corporate taxation.
+- **§163(j) Limitation:** An IRS code section that restricts the deductibility of business interest expense. The core mechanism modeled in this repository.
+- **ATI (Adjusted Taxable Income):** A tax-specific earnings measure used as the base for the §163(j) interest deduction cap. *Crucially, its calculation changed in 2022.*
+- **EBITDA (Earnings Before Interest, Taxes, Depreciation, and Amortization):** A common financial metric, used as the *proxy for ATI* from 2018–2021.
+- **EBIT (Earnings Before Interest and Taxes):** A financial metric, which became the *proxy for ATI* from 2022 onwards (making the interest cap stricter for high D&A firms).
+- **Tax Shield:** The reduction in a firm's tax liability due to the deductibility of interest expense.
+- **Kink Point:** The specific level of corporate debt where the interest expense surpasses the §163(j) cap, causing the marginal tax shield to drop to zero. This creates a non-linear "kink" in the benefit curve.
