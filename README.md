@@ -17,3 +17,16 @@ This project identifies the "kink" in the corporate tax shield caused by the 201
 
 ## ⚖️ License
 This framework is for sensitivity analysis and educational purposes, not causal inference or tax advice.
+
+## 🔍 Key Empirical Insights
+
+This model demonstrates the "Capital Intensity Penalty" introduced by the 2022 §163(j) transition. 
+
+| Feature | Pre-2017 Regime | TCJA (2018-2021) | TCJA (2022-Present) |
+| :--- | :--- | :--- | :--- |
+| **Tax Shield Shape** | Linear (Infinite) | Kinked (EBITDA-based) | Kinked (EBIT-based) |
+| **Max Benefit** | $0.35 per $1 interest | $0.21 per $1 interest | $0.21 per $1 interest |
+| **D&A Sensitivity** | Neutral | Low | **High (Penalty)** |
+
+### The "D&A Trap"
+Under the current regime, firms with high Depreciation & Amortization (D&A) hit their debt capacity 30-40% sooner than they did in 2021, even with identical cash flows. This framework allows you to quantify that "Debt Gap."
