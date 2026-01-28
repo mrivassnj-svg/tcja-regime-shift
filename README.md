@@ -28,27 +28,26 @@ Using the included `scripts/run_benchmark.py`, we can observe the impact on a fi
 **Insight**: The 2022 transition effectively reduced this firm's interest deduction limit by **45%**, more than doubling the tax drag on their interest expense.
 
 ---
+**Code Structure**
 
 tcja-regime-shift/
 ├── .github/
-│   └── workflows/          # Automated CI/CD Testing (GitHub Actions)
+│   └── workflows/
+│       └── python-tests.yml
 ├── data/
-│   ├── raw/                # Source CSVs / Raw financial inputs
-│   └── processed/          # Outputs from cleaning and modeling
+│   ├── raw/
+│   └── processed/
 ├── docs/
-│   └── proofs.tex          # LaTeX documentation of IRC § 163(j) math
+│   └── proofs.tex
 ├── src/
-│   ├── __init__.py         # Exposes classes for package-level imports
-│   ├── tax_logic.py        # Core engine: Finite State Machine for regimes
-│   └── visualization.py    # Plotting wrappers for "Kink Point" analysis
+│   ├── __init__.py
+│   ├── tax_logic.py
+│   └── visualization.py
 ├── tests/
-│   ├── __init__.py         # Allows pytest to recognize the test suite
-│   ├── test_tax_logic.py   # Unit tests for core calculation accuracy
-│   └── test_tradeoff.py    # Regression tests for regime shifts
-├── pyproject.toml          # Modern Python build/dependency config
-├── Makefile                # Automation for install, test, and clean
-└── README.md               # Project overview and benchmark results
-
+│   ├── test_tax_logic.py
+│   └── test_tradeoff.py
+├── pyproject.toml
+└── Makefile
 ---
 
 ## Quick Start
