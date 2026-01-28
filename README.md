@@ -29,22 +29,25 @@ Using the included `scripts/run_benchmark.py`, we can observe the impact on a fi
 
 ---
 
-## Repository Structure
-
 tcja-regime-shift/
 ├── .github/
-│   └── workflows/       # Automated CI/CD Testing
+│   └── workflows/          # Automated CI/CD Testing (GitHub Actions)
 ├── data/
-│   ├── raw/             # Raw financial datasets
-│   └── processed/       # Processed/cleaned datasets
-├── docs/                # LaTeX proofs and methodology
-├── src/                 # Core engine
-│   ├── tax_logic.py     # Tax calculation models
-│   └── visualization.py # Plotting & charts
-├── tests/               # Pytest suite for regime verification
-├── pyproject.toml       # Environment & dependency configuration
-└── Makefile             # One-word commands for installation and testing
-
+│   ├── raw/                # Source CSVs / Raw financial inputs
+│   └── processed/          # Outputs from cleaning and modeling
+├── docs/
+│   └── proofs.tex          # LaTeX documentation of IRC § 163(j) math
+├── src/
+│   ├── __init__.py         # Exposes classes for package-level imports
+│   ├── tax_logic.py        # Core engine: Finite State Machine for regimes
+│   └── visualization.py    # Plotting wrappers for "Kink Point" analysis
+├── tests/
+│   ├── __init__.py         # Allows pytest to recognize the test suite
+│   ├── test_tax_logic.py   # Unit tests for core calculation accuracy
+│   └── test_tradeoff.py    # Regression tests for regime shifts
+├── pyproject.toml          # Modern Python build/dependency config
+├── Makefile                # Automation for install, test, and clean
+└── README.md               # Project overview and benchmark results
 
 ---
 
