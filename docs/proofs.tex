@@ -1,1 +1,38 @@
+\documentclass{article}
+\usepackage{amsmath}
 
+\begin{document}
+
+\title{Mathematical Basis for IRC \S 163(j) Regime Shift}
+\author{mrivassnj-svg}
+\date{2026}
+\maketitle
+
+\section{Interest Deduction Limit (\S 163(j))}
+The amount of deductible business interest expense for a taxable year is limited to the sum of:
+\begin{equation}
+    L = BII + (ATI \times 0.30) + FPF
+\end{equation}
+Where:
+\begin{itemize}
+    \item $L$: Maximum allowable interest deduction.
+    \item $BII$: Business Interest Income.
+    \item $ATI$: Adjusted Taxable Income.
+    \item $FPF$: Floor Plan Financing interest.
+\end{itemize}
+
+\section{The 2022 Regime Shift}
+The "Regime Shift" modeled in this repository concerns the definition of $ATI$.
+\subsection{Pre-2022 (EBITDA Regime)}
+For years beginning before January 1, 2022, $ATI$ is computed adding back depreciation, amortization, and depletion:
+\begin{equation}
+    ATI \approx EBITDA
+\end{equation}
+
+\subsection{Post-2022 (EBIT Regime)}
+For years beginning on or after January 1, 2022, the add-back for depreciation and amortization expires:
+\begin{equation}
+    ATI \approx EBIT = EBITDA - (Depreciation + Amortization)
+\end{equation}
+
+\end{document}
