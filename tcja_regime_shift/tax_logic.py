@@ -1,35 +1,28 @@
-# regime_shift_/tax_logic.py
+from pydantic import BaseModel, Field
+
+class FirmFinancials(BaseModel):
+    year: int = Field(..., ge=2018)
+    ebitda: float = Field(..., ge=0)
+    dep_and_amort: float = Field(..., ge=0)
+    interest_expense: float = Field(..., ge=0)
+
+    @property
+    def ebit(self) -> float:
+        return self.ebitda - self.dep_and_amort
 
 class TCJAModel:
-    """
-    A class to simulate corporate tax shield regime shifts under TCJA §163(j).
-    """
-
-    def __init__(self, regime: str):
+    def __init__(self, *args, regime: str = None, **kwargs):
         """
-        Initialize the model with a specific tax regime.
-        
+        A model supporting different TCJA regime specifications.
+
         Args:
-            regime (str): The tax regime to use, e.g., 'pre_tcja', 'post_tcja'.
+            regime (str): one of "pre_2017", "tcja_early", "tcja_late", etc.
         """
         self.regime = regime
-        # Example placeholder for model data
-        self.firms = []
+        # existing initialization...
 
-    def add_firm(self, firm):
-        """
-        Add a firm to the model.
-        """
-        self.firms.append(firm)
 
-    def compute_tax_shield(self):
-        """
-        Example method: compute the tax shield for all firms based on the regime.
-        """
-        results = []
-        for firm in self.firms:
-            # Placeholder computation logic
-            shield = firm.get("ebitda", 0) * 0.21  # 21% corporate tax rate as example
-            results.append({"firm": firm.get("name"), "tax_shield": shield})
-        return results
-
+    def get_deduction_limit(self, firm: FirmFinancials) -> float:
+        # Pre-2022: EBITDA | Post-2022: EBIT
+        base = firm.ebitda if firm.year < 2022 else firm.ebit
+        return max(0, base * self.limit_ratio)
