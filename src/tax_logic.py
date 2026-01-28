@@ -11,8 +11,16 @@ class FirmFinancials(BaseModel):
         return self.ebitda - self.dep_and_amort
 
 class TCJAModel:
-    def __init__(self, limit_ratio: float = 0.30):
-        self.limit_ratio = limit_ratio
+    def __init__(self, *args, regime: str = None, **kwargs):
+        """
+        A model supporting different TCJA regime specifications.
+
+        Args:
+            regime (str): one of "pre_2017", "tcja_early", "tcja_late", etc.
+        """
+        self.regime = regime
+        # existing initialization...
+
 
     def get_deduction_limit(self, firm: FirmFinancials) -> float:
         # Pre-2022: EBITDA | Post-2022: EBIT
