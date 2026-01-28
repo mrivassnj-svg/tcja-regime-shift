@@ -1,1 +1,3 @@
-from src.tax_logic import TCJAModel, FirmFinancials
+from .tax_logic import TCJAModel
+
+__all__ = ["TCJAModel"]
