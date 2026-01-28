@@ -1,1 +1,23 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
 
+[project]
+name = "tcja-regime-shift"
+version = "0.1.0"
+description = "Quantitative modeling of the EBITDA-to-EBIT transition under TCJA Section 163(j)."
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{name = "mrivassnj-svg"}]
+dependencies = [
+    "pandas>=2.0.0",
+    "numpy>=1.24.0",
+    "matplotlib>=3.7.0",
+    "pydantic>=2.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+]
