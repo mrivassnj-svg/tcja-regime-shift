@@ -1,44 +1,61 @@
-# TCJA Regime Shift Framework
+# TCJA Regime Shift: Quantitative Modeling of IRC § 163(j)
 
-A robust mathematical backbone for modeling the structural shift in U.S. corporate tax logic following the **Tax Cuts and Jobs Act (TCJA)**. This repository simulates how the transition from a linear tax benefit to a constrained, non-linear benefit affects corporate capital structure and the "Tradeoff Theory" of debt.
+## Project Overview
+This repository provides a high-fidelity simulation of the interest deduction limitations introduced by the **Tax Cuts and Jobs Act (TCJA)**. Specifically, it models the structural "Regime Shift" that occurred on **January 1, 2022**, when the calculation for **Adjusted Taxable Income (ATI)** transitioned from an **EBITDA-based proxy** to an **EBIT-based proxy**.  
 
-## 📚 Key Terminology
+This shift creates a "Kink Point" in corporate debt capacity, particularly for **capital-intensive industries** with high **Depreciation and Amortization (D&A)**.
 
-To fully understand the TCJA's impact, familiarize yourself with these core concepts:
+---
 
-- **§163(j) Limitation:** The IRS code section that restricts the deductibility of business interest expense. This is the primary "regime shift" mechanism.
-- **ATI (Adjusted Taxable Income):** The tax-based earnings measure used as the base for the interest cap.
-- **EBITDA:** Used as the proxy for ATI from 2018–2021 (Earnings Before Interest, Taxes, Depreciation, and Amortization).
-- **EBIT:** Became the stricter proxy for ATI from 2022 onwards (subtracting Depreciation and Amortization), significantly impacting capital-intensive firms.
-- **Tax Shield:** The reduction in tax liability resulting from deductible interest.
-- **Kink Point:** The specific debt level where interest expense hits the 30% cap, causing the marginal tax benefit to drop to zero.
+## Key Features
 
-## 🗓️ Legislative Timeline
+- **Multi-Regime Logic**: Supports `pre_2017` (uncapped), `tcja_early` (EBITDA), and `tcja_late` (EBIT) modeling.  
+- **Hardened Data Validation**: Uses **Pydantic** to ensure financial inputs are economically valid.  
+- **Automated Testing**: Full **CI/CD suite via GitHub Actions** to verify mathematical accuracy.  
+- **Academic Rigor**: Includes **LaTeX documentation** (`docs/proofs.tex`) defining the underlying tax law.  
 
-The model distinguishes between three eras of corporate finance based on the evolution of §163(j):
+---
 
-```text
-       Pre-2018                  2018 - 2021                  2022 - Present
------------------------|------------------------------|-------------------------------
-  • 35% Corp Tax Rate    • 21% Corp Tax Rate            • 21% Corp Tax Rate
-  • Full Interest        • §163(j) Cap (30% EBITDA)     • §163(j) Cap (30% EBIT)
-    Deductibility        • Higher debt capacity         • Lower debt capacity for
-  • Linear Tax Shield      (D&A neutral)                  high-D&A firms
-                                                        • Stricter "Kink Point"
+## The "Regime Shift" Benchmark
 
-This repository tracks my work analyzing tax policy shifts using Python. It is organized for modularity, reproducibility, and maintainability, with a clear separation between raw and processed data, code, visualizations, tests, and documentation. The project also uses modern Python packaging and automation workflows for reliability.
+Using the included `scripts/run_benchmark.py`, we can observe the impact on a firm with **$100M EBITDA** and **$45M D&A**:
 
-Repository Structure
+| Regime        | Deduction Limit | Disallowed Interest | Tax Shield Loss |
+|---------------|----------------|-------------------|----------------|
+| Pre-2022 (EBITDA) | $30.00M       | $10.00M           | $2.10M         |
+| Post-2022 (EBIT)  | **$16.50M**   | $23.50M           | $4.94M         |
+
+**Insight**: The 2022 transition effectively reduced this firm's interest deduction limit by **45%**, more than doubling the tax drag on their interest expense.
+
+---
+
+## Repository Structure
+
 tcja-regime-shift/
-├── .github/workflows/      # Automation scripts for CI/CD (testing, linting, deployments)
-├── data/
-│   ├── raw/                # Original datasets (untouched for reproducibility)
-│   └── processed/          # Cleaned/processed datasets ready for analysis
-├── docs/                   # Documentation and mathematical proofs
-│   └── proofs.tex          # LaTeX files for formulas, derivations, or theoretical explanations
-├── src/
-│   ├── models.py           # Model definitions and computations
-│   │                         # Includes Pydantic validation for input/output consistency
-│   └── viz.py              # Functions for generating plots and visualizations
-├── tests/                  # Unit and integration tests for code in src/
-└── pyproject.toml          # Modern Python packaging configuration
+├── .github/workflows/ # Automated CI/CD Testing
+├── data/ # Raw and processed financial datasets
+├── docs/ # LaTeX proofs and methodology
+├── src/ # Core engine: tax_logic.py & visualization.py
+├── tests/ # Pytest suite for regime verification
+├── pyproject.toml # Environment & dependency configuration
+└── Makefile # One-word commands for installation and testing
+
+
+---
+
+## Quick Start
+
+### Install Dependencies
+
+```bash
+pip install -e .
+Run Validation Tests
+pytest tests/
+Generate Benchmark
+python scripts/run_benchmark.py
+Future Development
+ Integration with SEC EDGAR API for automated firm data retrieval.
+
+ Monte Carlo simulations for varying interest rate environments.
+
+ Interactive dashboard via Streamlit.
