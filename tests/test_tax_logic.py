@@ -1,5 +1,5 @@
 import pytest
-from src.tax_logic import FirmFinantials, TCJAModel
+from src.tax_logic import FirmFinancials, TCJAModel
 
 def test_ebitda_regime_limit():
     model = TCJAModel()
