@@ -25,3 +25,20 @@ The model distinguishes between three eras of corporate finance based on the evo
     Deductibility        • Higher debt capacity         • Lower debt capacity for
   • Linear Tax Shield      (D&A neutral)                  high-D&A firms
                                                         • Stricter "Kink Point"
+
+This repository tracks my work analyzing tax policy shifts using Python. It is organized for modularity, reproducibility, and maintainability, with a clear separation between raw and processed data, code, visualizations, tests, and documentation. The project also uses modern Python packaging and automation workflows for reliability.
+
+Repository Structure
+tcja-regime-shift/
+├── .github/workflows/      # Automation scripts for CI/CD (testing, linting, deployments)
+├── data/
+│   ├── raw/                # Original datasets (untouched for reproducibility)
+│   └── processed/          # Cleaned/processed datasets ready for analysis
+├── docs/                   # Documentation and mathematical proofs
+│   └── proofs.tex          # LaTeX files for formulas, derivations, or theoretical explanations
+├── src/
+│   ├── models.py           # Model definitions and computations
+│   │                         # Includes Pydantic validation for input/output consistency
+│   └── viz.py              # Functions for generating plots and visualizations
+├── tests/                  # Unit and integration tests for code in src/
+└── pyproject.toml          # Modern Python packaging configuration
