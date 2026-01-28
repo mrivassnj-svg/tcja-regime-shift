@@ -3,7 +3,7 @@ name = "tcja-regime-shift"
 version = "0.1.0"
 description = "Structural simulation of corporate tax shield regime shifts under TCJA §163(j)."
 authors = [
-  { name = "Your Name", email = "you@example.com" }
+  { name = "Michael Rivas", email = "mrivassnj@gmail.com" }
 ]
 readme = "README.md"
 requires-python = ">=3.8"
